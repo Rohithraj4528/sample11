@@ -1,0 +1,36 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Random;
+class TensPlaceComparator implements Comparator<Integer> {
+public int compare(Integer num1, Integer num2) {
+int tensPlace1 = (num1 % 100)/10;
+int tensPlace2 = (num2% 100)/10;
+return Integer.compare(tensPlace1 , tensPlace2);
+}
+}
+public class NumberSorting {
+public static void main(String[] args) {
+int minRange = 10; 
+int maxRange =99;
+int count = 10;
+ArrayList<Integer> randomNumbers = new ArrayList<>();
+Random random = new Random();
+for (int i=0; i<count; i++) {
+int randomNumber;
+do {
+randomNumber = random.nextInt((maxRange-minRange) + 1) + minRange;
+} while (randomNumber % 2 != 0 || randomNumber % 5 != 0); 
+randomNumbers.add(randomNumber); }
+System.out.println("Unsorted numbers:"); 
+for (int num: randomNumbers) {
+System.out.print(num + " ");
+}
+System.out.println();
+randomNumbers.sort(new TensPlaceComparator());
+System.out.println("Sorted numbers according to tens place:"); 
+for (int num: randomNumbers) {
+System.out.print(num + " ");
+}
+System.out.println();
+}
+}
